@@ -1,6 +1,5 @@
 <?php 
 class Teams_model extends CI_Model {
-
 	public function __construct()
 	{
 			$this->load->database();
@@ -48,25 +47,43 @@ class Teams_model extends CI_Model {
 			'name' => $this->input->post('name'),
 			'city' => $this->input->post('city'),
 			'homeBase' => $this->input->post('homeBase'),
-			'slug' => $slug,
+			'founded' => $this->input->post('founded'),
 			'homeKitColor' => $this->input->post('homeKitColor'),
 			'awayKitColor' => $this->input->post('awayKitColor'),
 			'description' => $this->input->post('description'),
 			'awards' => $this->input->post('awards'),
 			'sponsor' => $this->input->post('sponsor'),
-			'sponsorWebsite' => $this->input->post('sponsorWebsite')
+			'sponsorWebsite' => $this->input->post('sponsorWebsite'),
+			'teamWebsite' => $this->input->post('teamWebsite'),
+			'slug' => $slug
 		);
 		
 		return $this->db->insert('teams', $data);
 	}
 	
-	public function update_team($data)
+	public function update_team($slug)
 	{
 		$this->load->helper('url');
 		//$this->load->helper('string');
 		
 		//$slug = url_title($this->input->post('name'),'dash',TRUE);
 		//$random_string = random_string('numeric', 4);
+		
+		$data = array(
+				//'id' => $this->input->post('id'),
+				'name' => $this->input->post('name'),
+				'city' => $this->input->post('city'),
+				'homeBase' => $this->input->post('homeBase'),
+				'founded' => $this->input->post('founded'),
+				'homeKitColor' => $this->input->post('homeKitColor'),
+				'awayKitColor' => $this->input->post('awayKitColor'),
+				'description' => $this->input->post('description'),
+				'awards' => $this->input->post('awards'),
+				'sponsor' => $this->input->post('sponsor'),
+				'sponsorWebsite' => $this->input->post('sponsorWebsite'),
+				'teamWebsite' => $this->input->post('teamWebsite'),				
+				'slug' => $slug,
+			);
 		
 		$this->db->where('slug', $slug);
 		$this->db->update('teams', $data);
@@ -75,6 +92,4 @@ class Teams_model extends CI_Model {
 		return $this->db->affected_rows();
 		
 	}
-
 }
-
