@@ -1,0 +1,43 @@
+<h2><?php echo $title; ?></h2>
+
+<?php echo validation_errors(); ?>
+
+<?php echo form_open('teams/create'); ?>
+
+    <label for="name">Team Name</label>
+    <input type="input" name="name" /><br />
+
+    <label for="city">City</label>
+    <input type="input" name="city" /><br />
+	
+	<label for="homeBase">Home Base</label>
+    <input type="input" name="homeBase" /><br />
+	
+	<label for="founded">Date Founded</label>
+    <input type="date" name="founded" /><br />
+	
+	<label for="teamWebsite">Team Website</label>
+    <input type="url" name="teamWebsite" /><br />
+	
+	<label for="homeKitColor">Home Kit Color</label>
+    <input type="color" name="homeKitColor" value = "#000000" /><br />
+	
+	<label for="awayKitColor">Away Kit Color</label>
+    <input type="color" name="awayKitColor" value = "#ffffff"/><br />
+	
+	<label for="description">Description</label>
+    <textarea name="description" rows = '10' cols = "30"></textarea><br />
+	
+	<label for="awards">Awards</label>
+    <textarea name="awards" rows = '10' cols = "30"></textarea><br />
+	
+	<label for="sponsor">Sponsor</label>
+    <input type="input" name="sponsor" /><br />
+	
+	<label for="sponsorWebsite">Sponsor Website</label>
+    <input type="url" name="sponsorWebsite" /><br />
+	
+
+    <input type="submit" name="submit" value="Create team" />
+
+</form>
