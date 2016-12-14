@@ -1,5 +1,7 @@
 <h2><?php echo $title; ?></h2>
 
+<?php echo validation_errors(); ?>
+
 <?php echo form_open('teams/update/'.$teams_profile['slug']);?>
 
 	<!--<label for="id">ID</label>-->
@@ -27,10 +29,10 @@
     <input type="color" name="awayKitColor" value = "<?php echo $teams_profile['awayKitColor']?>"/><br />
 	
 	<label for="description">Description</label>
-    <textarea name="description" rows = '10' cols = "30" value = "<?php echo $teams_profile['description']?>"></textarea><br />
+    <textarea name="description" rows = '10' cols = "30"><?php echo $teams_profile['description']?></textarea><br />
 	
 	<label for="awards">Awards</label>
-    <textarea name="awards" rows = '10' cols = "30"value = "<?php echo $teams_profile['awards']?>"></textarea><br />
+    <textarea name="awards" rows = '10' cols = "30"><?php echo $teams_profile['awards']?></textarea><br />
 	
 	<label for="sponsor">Sponsor</label>
     <input type="input" name="sponsor" value = "<?php echo $teams_profile['sponsor']?>"/><br />
