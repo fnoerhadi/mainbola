@@ -1,14 +1,12 @@
 <?php
 //teams CI controller
 class Teams extends CI_Controller {
-
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Teams_model');
 		$this->load->helper('url_helper');
 	}
-
 	public function index()
 	{
 		$data['teams'] = $this->Teams_model->get_teams();
@@ -18,7 +16,6 @@ class Teams extends CI_Controller {
         $this->load->view('teams/index', $data);
 		//$this->load->view('templates/footer');
 	}
-
 	public function view($slug = NULL)
 	{
 		$data['teams_profile'] = $this->Teams_model->get_teams_slug($slug);
@@ -45,14 +42,14 @@ class Teams extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Team Name', 'required');
 		$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('homeBase', 'Home Base', 'required');
-		$this->form_validation->set_rules('date', 'Date Founded', 'required');
-		//$this->form_validation->set_rules('homeBase', 'Home Base', 'required');
+		$this->form_validation->set_rules('founded', 'Date Founded', 'required');
 		$this->form_validation->set_rules('homeKitColor', 'Home Kit Color', 'required');
 		$this->form_validation->set_rules('awayKitColor', 'Away Kit Color', 'required');
 		$this->form_validation->set_rules('description', 'Description', 'required');
 		//$this->form_validation->set_rules('awards', 'Awards', 'required');
 		//$this->form_validation->set_rules('sponsor', 'Sponsor', 'required');
 		//$this->form_validation->set_rules('sponsorWebsite', 'Sponsor Website', 'required');
+		//$this->form_validation->set_rules('teamWebsite', 'Team Website', 'required');
 		
 		if ($this->form_validation->run()=== FALSE)
 		{
@@ -79,14 +76,14 @@ class Teams extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Team Name', 'required');
 		$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('homeBase', 'Home Base', 'required');
-		$this->form_validation->set_rules('date', 'Date Founded', 'required');
-		//$this->form_validation->set_rules('teamWebsite', 'Sponsor Website', 'required');
+		$this->form_validation->set_rules('founded', 'Date Founded', 'required');
 		$this->form_validation->set_rules('homeKitColor', 'Home Kit Color', 'required');
 		$this->form_validation->set_rules('awayKitColor', 'Away Kit Color', 'required');
 		$this->form_validation->set_rules('description', 'Description', 'required');
 		//$this->form_validation->set_rules('awards', 'Awards', 'required');
 		//$this->form_validation->set_rules('sponsor', 'Sponsor', 'required');
 		//$this->form_validation->set_rules('sponsorWebsite', 'Sponsor Website', 'required');
+		//$this->form_validation->set_rules('teamWebsite', 'Team Website', 'required');
 		
 		if ($this->form_validation->run()=== FALSE)
 		{
@@ -94,24 +91,8 @@ class Teams extends CI_Controller {
 			$this->load->view('teams/update', $data);
 		}
 		else
-		{
-			$data = array(
-				'id' => $this->input->post('id'),
-				'name' => $this->input->post('name'),
-				'city' => $this->input->post('city'),
-				'homeBase' => $this->input->post('homeBase'),
-				'slug' => $slug,
-				'founded' => $this->input->post('founded'),
-				'sponsor' => $this->input->post('sponsor'),
-				'sponsorWebsite' => $this->input->post('sponsorWebsite'),
-				'teamWebsite' => $this->input->post('teamWebsite'),
-				'homeKitColor' => $this->input->post('homeKitColor'),
-				'awayKitColor' => $this->input->post('awayKitColor'),
-				'description' => $this->input->post('description'),
-				'awards' => $this->input->post('awards')
-			);
-			
-			$this->Teams_model->update_team($data);
+		{			
+			$this->Teams_model->update_team($slug);
 			$this->load->view('teams/success');
 		}
 	}
